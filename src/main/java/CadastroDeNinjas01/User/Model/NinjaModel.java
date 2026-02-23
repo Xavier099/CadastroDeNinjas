@@ -1,9 +1,12 @@
 package CadastroDeNinjas01.User.Model;
 
+import CadastroDeNinjas01.Missoes.Model.MissoesModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +23,8 @@ public class NinjaModel {
     private String email;
     @Column (name = "idade")
     private int idade;
+
+    @ManyToOne
+    @JoinColumn(name = "ninja")
+    private MissoesModel missoes;
 }
