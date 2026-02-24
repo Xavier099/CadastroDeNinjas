@@ -24,6 +24,7 @@ public class NinjaModel {
     @Column (name = "idade")
     private int idade;
 
+    // @ManyToOne - Um Ninja tem uma unica missão
     @ManyToOne
     @JoinColumn(name = "ninja")
     private MissoesModel missoes;

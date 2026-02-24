@@ -23,6 +23,7 @@ public class MissoesModel {
     @Column (name = "dificuldade")
     private String dificuldade;
 
+    // @OneToMany - Uma missao para varios Ninjas
     @OneToMany(mappedBy = "missoes")
     @JsonIgnore
     private List<NinjaModel> ninja;
