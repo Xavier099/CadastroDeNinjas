@@ -2,10 +2,7 @@ package CadastroDeNinjas01.User.Controller;
 
 import CadastroDeNinjas01.User.DTO.NinjaDTO;
 import CadastroDeNinjas01.User.Service.NInjaService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +29,15 @@ public class NinjaController {
     @GetMapping("/listById/{id}")
     public NinjaDTO listByid(@PathVariable Long id){
         return ninjaService.listId(id);
+    }
+
+    @PostMapping("/criar")
+    public List<NinjaDTO> create(@RequestBody List<NinjaDTO> ninjaDTO){
+        return ninjaService.createNinja(ninjaDTO);
+    }
+
+    @DeleteMapping("/deletar/{id}")
+    public void deletarById(@PathVariable Long id){
+        ninjaService.deletar(id);
     }
 }
