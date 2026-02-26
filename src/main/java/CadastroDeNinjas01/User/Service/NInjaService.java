@@ -6,7 +6,9 @@ import CadastroDeNinjas01.User.Model.NinjaModel;
 import CadastroDeNinjas01.User.Respository.NinjaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,5 +27,11 @@ public class NInjaService {
                 .stream()
                 .map(ninjaMapper::map)
                 .collect(Collectors.toList());
+    }
+
+    //list by id
+    public NinjaDTO listId(Long id){
+        Optional<NinjaModel> ninja = ninjaRepository.findById(id);
+        return ninja.map(ninjaMapper::map).orElse(null);
     }
 }
