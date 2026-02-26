@@ -50,4 +50,11 @@ public class NInjaService {
         Optional<NinjaModel> ninja = ninjaRepository.findById(id);
         return ninja.map(ninjaMapper::map).orElse(null);
     }
+
+    //delete
+    public void deletar(Long id){
+        ninjaRepository.deleteById(id);
+    }
+
+    //update
 }
