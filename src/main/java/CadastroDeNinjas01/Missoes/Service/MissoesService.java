@@ -34,4 +34,21 @@ public class MissoesService {
         Optional<MissoesModel> missoes = missoesRepository.findById(id);
         return missoes.map(missoesMapper::map).orElse(null);
     }
+
+    //create missoes
+    public List<MissoesDTO> creatMissoes(List<MissoesDTO> missoesDTO){
+        List<MissoesModel> missoes = missoesDTO.stream()
+                .map(missoesMapper::map)
+                .collect(Collectors.toList());
+        List<MissoesModel> missoesModels = missoesRepository.saveAll(missoes);
+
+        return missoesModels.stream()
+                .map(missoesMapper::map)
+                .collect(Collectors.toList());
+    }
+
+    //delete missoes
+    public void deleteMissoes(Long id){
+        missoesRepository.deleteById(id);
+    }
 }
