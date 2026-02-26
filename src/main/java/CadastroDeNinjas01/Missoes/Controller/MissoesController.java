@@ -3,6 +3,7 @@ package CadastroDeNinjas01.Missoes.Controller;
 import CadastroDeNinjas01.Missoes.DTO.MissoesDTO;
 import CadastroDeNinjas01.Missoes.Service.MissoesService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,8 +24,13 @@ public class MissoesController {
         return "bem vindo a pagina de missoes";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/listMissoes")
     public List<MissoesDTO> listMissoes(){
         return missoesService.listMissoes();
+    }
+
+    @GetMapping("/listMissoesId/{id}")
+    public MissoesDTO missoesId(@PathVariable Long id){
+        return missoesService.listMissoesByid(id);
     }
 }

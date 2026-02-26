@@ -6,6 +6,7 @@ import CadastroDeNinjas01.User.Model.NinjaModel;
 import CadastroDeNinjas01.User.Respository.NinjaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +20,21 @@ public class NInjaService {
     public NInjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
         this.ninjaRepository = ninjaRepository;
         this.ninjaMapper = ninjaMapper;
+    }
+
+    //create ninja
+    public List<NinjaDTO> createNinja(List<NinjaDTO> ninjaDTOS){
+        // lista de ninja model recebe uma stream do ninjaDTOS que é mapeada
+        List<NinjaModel> ninja = ninjaDTOS.stream()
+                .map(ninjaMapper::map)
+                .collect(Collectors.toList());
+        //salva os novos usuarios
+        List<NinjaModel> ninjaModels = ninjaRepository.saveAll(ninja);
+
+        //retorna novamente para o formato de lista
+        return ninjaModels.stream()
+                .map(ninjaMapper::map)
+                .collect(Collectors.toList());
     }
 
     //list ninjas
