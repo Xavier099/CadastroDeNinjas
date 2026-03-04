@@ -57,4 +57,11 @@ public class NInjaService {
     }
 
     //update
+    public NinjaDTO update(Long id, NinjaDTO ninjaDTO){
+        if(ninjaRepository.existsById(id)){
+            ninjaDTO.setId(id);
+            return ninjaRepository.save(ninjaDTO);
+        }
+        return null;
+    }
 }
