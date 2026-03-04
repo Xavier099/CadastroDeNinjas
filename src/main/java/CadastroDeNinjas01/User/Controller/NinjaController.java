@@ -36,6 +36,11 @@ public class NinjaController {
         return ninjaService.createNinja(ninjaDTO);
     }
 
+    @PatchMapping("/update-user/{id}")
+    public NinjaDTO update(@PathVariable Long id,@RequestBody NinjaDTO ninjaDTO){
+        return ninjaService.update(id,ninjaDTO);
+    }
+
     @DeleteMapping("/deletar/{id}")
     public void deletarById(@PathVariable Long id){
         ninjaService.deletar(id);

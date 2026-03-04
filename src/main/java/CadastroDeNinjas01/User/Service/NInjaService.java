@@ -58,10 +58,15 @@ public class NInjaService {
 
     //update
     public NinjaDTO update(Long id, NinjaDTO ninjaDTO){
-        if(ninjaRepository.existsById(id)){
-            ninjaDTO.setId(id);
-            return ninjaRepository.save(ninjaDTO);
-        }
-        return null;
+        //procura o id
+       Optional<NinjaModel> ninjaUpdate = ninjaRepository.findById(id);
+       //se for presente este id
+       if (ninjaUpdate.isPresent()){
+           NinjaModel ninjaAtualizado = ninjaMapper.map(ninjaDTO);
+           ninjaAtualizado.setId(id);
+           NinjaModel ninjaSalvo = ninjaRepository.save(ninjaAtualizado);
+           return ninjaMapper.map(ninjaSalvo);
+       }
+       return null;
     }
 }
