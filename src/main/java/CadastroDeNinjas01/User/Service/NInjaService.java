@@ -4,6 +4,7 @@ import CadastroDeNinjas01.User.DTO.NinjaDTO;
 import CadastroDeNinjas01.User.DTO.NinjaMapper;
 import CadastroDeNinjas01.User.Model.NinjaModel;
 import CadastroDeNinjas01.User.Respository.NinjaRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,18 +24,10 @@ public class NInjaService {
     }
 
     //create ninja
-    public List<NinjaDTO> createNinja(List<NinjaDTO> ninjaDTOS){
-        // lista de ninja model recebe uma stream do ninjaDTOS que é mapeada
-        List<NinjaModel> ninja = ninjaDTOS.stream()
-                .map(ninjaMapper::map)
-                .collect(Collectors.toList());
-        //salva os novos usuarios
-        List<NinjaModel> ninjaModels = ninjaRepository.saveAll(ninja);
-
-        //retorna novamente para o formato de lista
-        return ninjaModels.stream()
-                .map(ninjaMapper::map)
-                .collect(Collectors.toList());
+    public NinjaDTO createNinja(NinjaDTO ninjaDTOS){
+       NinjaModel ninja = ninjaMapper.map(ninjaDTOS);
+       ninja = ninjaRepository.save(ninja);
+       return ninjaMapper.map(ninja);
     }
 
     //list ninjas

@@ -36,15 +36,10 @@ public class MissoesService {
     }
 
     //create missoes
-    public List<MissoesDTO> creatMissoes(List<MissoesDTO> missoesDTO){
-        List<MissoesModel> missoes = missoesDTO.stream()
-                .map(missoesMapper::map)
-                .collect(Collectors.toList());
-        List<MissoesModel> missoesModels = missoesRepository.saveAll(missoes);
-
-        return missoesModels.stream()
-                .map(missoesMapper::map)
-                .collect(Collectors.toList());
+    public MissoesDTO creatMissoes(MissoesDTO missoesDTO){
+        MissoesModel missoes = missoesMapper.map(missoesDTO);
+        missoes = missoesRepository.save(missoes);
+        return missoesMapper.map(missoes);
     }
     //update
     public MissoesDTO update(Long id, MissoesDTO missoesDTO){
