@@ -2,10 +2,7 @@ package CadastroDeNinjas01.Missoes.Controller;
 
 import CadastroDeNinjas01.Missoes.DTO.MissoesDTO;
 import CadastroDeNinjas01.Missoes.Service.MissoesService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +29,10 @@ public class MissoesController {
     @GetMapping("/listMissoesId/{id}")
     public MissoesDTO missoesId(@PathVariable Long id){
         return missoesService.listMissoesByid(id);
+    }
+
+    @PatchMapping("/update/{id}")
+    public MissoesDTO update(@PathVariable Long id, @RequestBody MissoesDTO missoesDTO){
+        return missoesService.update(id,missoesDTO);
     }
 }
