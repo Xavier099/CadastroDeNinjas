@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class NinjaController {
 
-    private NInjaService ninjaService;
+    private final NInjaService ninjaService;
 
     public NinjaController(NInjaService ninjaService) {
         this.ninjaService = ninjaService;
